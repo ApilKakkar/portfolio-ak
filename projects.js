@@ -15,27 +15,19 @@ window.SITE = {
 
 window.PROJECTS = [
   {
-    title: "Project One",
-    description: "One-line description of what this project does and who it is for.",
-    url: "https://example.com/project-one",
-    tags: ["Web", "AI"],
+    title: "Stock Notifier",
+    description: "Get notified about stock movements and alerts.",
+    url: "https://apilkakkar.com/stock-notifier/",
+    tags: ["Web"],
     status: "live",
     year: "2026",
   },
   {
-    title: "Project Two",
-    description: "One-line description of what this project does and who it is for.",
-    url: "https://example.com/project-two",
-    tags: ["Product"],
+    title: "Interest Matrix",
+    description: "An interest matrix tool.",
+    url: "https://apilkakkar.com/interest-matrix",
+    tags: ["Web"],
     status: "live",
-    year: "2026",
-  },
-  {
-    title: "Next Project",
-    description: "Something in the pipeline.",
-    url: "",
-    tags: ["Coming soon"],
-    status: "soon",
     year: "2026",
   },
 ];
