@@ -4,84 +4,113 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23241f17'/%3E%3Cstop offset='1' stop-color='%2312110e'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23g)'/%3E%3Cpath d='M16 49 L32 14 L48 49 M22.5 36 H41.5' fill='none' stroke='%23f1ece0' stroke-width='6.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='50' cy='49' r='5' fill='%23ff7a59'/%3E%3C/svg%3E">
-<meta name="theme-color" content="#12110e">
+<meta name="theme-color" content="#f3f4f8">
 <title>Apil Kakkar — Projects</title>
 <meta name="description" content="Projects and products built by Apil Kakkar.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#f6f3ec; --ink:#16140f; --muted:#6b665a; --line:#dcd6c6; --card:#fbf9f4;
-    --accent:#c8452b; --live:#2f7d4f; --build:#b7791f;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{ --bg:#12110e; --ink:#f1ece0; --muted:#9a9382; --line:#2c2a23; --card:#18170f; --accent:#ff7a59; --live:#6cc58d; --build:#e0a64a; }
+    --bg:#f3f4f8; --ink:#2c2f36; --muted:#8a90a0; --slate:#a9b0bf; --slate-2:#c4c9d6;
+    --card:#ffffff; --accent:#e0675a; --line:#d9dce5; --shadow:0 22px 40px -22px rgba(44,47,54,.35);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  body{background:var(--bg);color:var(--ink);font-family:Roboto,system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px;position:relative}
 
-  header.top{display:flex;justify-content:space-between;align-items:center;padding:28px 0;font-size:14px}
-  .brand{font-family:Fraunces,serif;font-weight:600;font-size:18px;letter-spacing:-.01em}
-  .brand i{color:var(--accent);font-style:normal}
-  nav a{margin-left:20px;color:var(--muted);transition:color .2s}
-  nav a:hover{color:var(--ink)}
+  /* soft background blobs, like the mock */
+  .blob{position:fixed;z-index:-1;border-radius:50%;background:var(--slate-2);opacity:.45;filter:blur(2px)}
+  .b1{width:520px;height:520px;right:-180px;top:-160px}
+  .b2{width:420px;height:420px;left:-200px;bottom:-140px;background:#d3d7e2}
 
-  .hero{padding:72px 0 56px;border-bottom:1px solid var(--line)}
-  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
-  h1{font-family:Fraunces,serif;font-weight:500;font-size:clamp(40px,7vw,84px);line-height:1.02;letter-spacing:-.03em;max-width:15ch}
-  h1 em{color:var(--accent);font-style:italic}
-  .hero p{margin-top:24px;max-width:52ch;color:var(--muted);font-size:18px}
+  header.top{padding:44px 0 8px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+  h1{font-size:clamp(40px,8vw,64px);font-weight:900;letter-spacing:-.03em;line-height:1}
+  .tagline{margin-top:12px;color:var(--muted);max-width:46ch;font-size:17px}
+  .bookmark{width:28px;height:36px;flex:none;margin-top:6px}
 
-  section{padding:56px 0 8px}
-  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:24px}
-  .sec-head h2{font-family:Fraunces,serif;font-weight:500;font-size:28px;letter-spacing:-.02em}
-  .sec-head span{color:var(--muted);font-size:14px}
+  .search{margin:28px 0 22px;position:relative}
+  .search svg{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:20px;height:20px;stroke:var(--muted)}
+  .search input{width:100%;padding:15px 18px 15px 50px;border:0;border-radius:14px;background:var(--bg);color:var(--ink);font:500 17px Roboto,sans-serif;
+        box-shadow:inset 0 0 0 1.5px #e3e5ec,0 6px 14px -6px rgba(44,47,54,.28)}
+  .search input::placeholder{color:var(--muted)}
+  .search input:focus{outline:0;box-shadow:inset 0 0 0 2px var(--accent),0 6px 14px -6px rgba(44,47,54,.28)}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-  .card{position:relative;display:flex;flex-direction:column;gap:12px;min-height:210px;padding:24px;background:var(--card);border:1px solid var(--line);border-radius:14px;
-        transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
-  a.card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 14px 30px -18px rgba(0,0,0,.35)}
-  a.card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-  .card .row{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted)}
-  .status{display:inline-flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
-  .status::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
-  .status.live{color:var(--live)} .status.building{color:var(--build)} .status.soon{color:var(--muted)}
-  .card h3{font-family:Fraunces,serif;font-weight:500;font-size:24px;letter-spacing:-.015em;line-height:1.15}
-  .card p{color:var(--muted);font-size:15px;flex:1}
-  .card .foot{display:flex;justify-content:space-between;align-items:center;gap:12px}
-  .tags{display:flex;flex-wrap:wrap;gap:6px}
-  .tags span{font-size:12px;padding:3px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
-  .arrow{font-size:22px;color:var(--accent);transition:transform .25s}
-  a.card:hover .arrow{transform:translate(4px,-4px)}
-  div.card{opacity:.65;border-style:dashed}
+  .years{display:flex;gap:26px;overflow-x:auto;padding:4px 2px 18px;scrollbar-width:none}
+  .years::-webkit-scrollbar{display:none}
+  .years button{position:relative;background:none;border:0;font:700 20px Roboto,sans-serif;color:var(--slate);cursor:pointer;padding:0 0 12px;letter-spacing:.01em;transition:color .2s}
+  .years button:hover{color:var(--ink)}
+  .years button.on{color:var(--ink)}
+  .years button.on::after{content:"";position:absolute;left:50%;bottom:0;width:7px;height:7px;margin-left:-3.5px;border-radius:50%;background:var(--accent)}
 
-  footer{margin-top:80px;padding:32px 0 48px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:var(--muted);font-size:14px}
-  footer a:hover{color:var(--ink)}
-  footer .links a{margin-left:16px}
+  /* ---------- timeline ---------- */
+  .timeline{position:relative;padding:12px 0 24px}
+  .timeline::before{content:"";position:absolute;top:0;bottom:0;left:21px;width:2px;background:linear-gradient(var(--line),var(--line)) ,var(--line);border-radius:2px}
+  .node{position:relative;padding:0 0 44px 64px}
+  .dot{position:absolute;left:12px;top:26px;width:20px;height:20px;border-radius:50%;background:var(--bg);border:3px solid var(--accent);box-shadow:0 0 0 6px var(--bg)}
+  .node.soon .dot{border-color:var(--slate);border-style:dashed}
+  .node .card{margin-top:22px}
 
-  .reveal{opacity:0;transform:translateY(12px);animation:in .6s ease forwards}
+  .card{position:relative;display:block;max-width:420px;border-radius:30px;background:var(--card);box-shadow:16px 14px 0 -4px #e8eaf1,var(--shadow);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+  a.card:hover{transform:translateY(-6px)}
+  a.card:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+  .shot{position:relative;height:170px;border-radius:30px 30px 0 0;background:linear-gradient(160deg,#b4bac8,#9aa2b4);overflow:hidden}
+  .shot .big{position:absolute;right:-6px;bottom:-34px;font-weight:900;font-size:150px;line-height:1;color:#fff;opacity:.22;letter-spacing:-.05em}
+  .shot .chips{position:absolute;left:20px;bottom:18px;display:flex;flex-wrap:wrap;gap:6px}
+  .shot .chips span{font-size:12px;font-weight:500;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,.28);color:#fff;backdrop-filter:blur(2px)}
+  .shot .badge{position:absolute;left:20px;top:18px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;display:flex;align-items:center;gap:7px}
+  .shot .badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(255,255,255,.35)}
+  .body{padding:20px 24px 22px}
+  .body h3{font-size:26px;font-weight:700;letter-spacing:-.015em;line-height:1.15}
+  .body .meta{margin-top:4px;color:var(--accent);font-weight:500;font-size:18px}
+  .body p{margin-top:10px;color:var(--muted);font-size:15px}
+  .body .go{margin-top:20px;display:flex;justify-content:space-between;align-items:center;font-weight:500;font-size:15px}
+  .go b{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-size:17px;transition:transform .3s}
+  a.card:hover .go b{transform:translateX(4px)}
+  div.card{opacity:.7}
+  div.card .shot{background:linear-gradient(160deg,#cfd3de,#bfc4d1)}
+  div.card .go{color:var(--muted)}
+  div.card .go b{background:var(--slate-2)}
+  .empty{padding:40px 0 60px 64px;color:var(--muted)}
+
+  footer{margin-top:20px;padding:26px 0 48px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:var(--muted);font-size:14px}
+  footer a:hover{color:var(--ink)} footer .links a{margin-left:18px}
+
+  /* desktop: alternate cards left / right of the centre line */
+  @media(min-width:860px){
+    .timeline::before{left:50%;margin-left:-1px}
+    .node{width:50%;padding:0 56px 56px 0}
+    .node:nth-child(even){margin-left:50%;padding:0 0 56px 56px}
+    .dot{left:auto;right:-10px}
+    .node:nth-child(even) .dot{right:auto;left:-10px}
+      .node:nth-child(odd) .card{margin-left:auto}
+  }
+
+  .reveal{opacity:0;transform:translateY(18px);animation:in .6s cubic-bezier(.2,.8,.2,1) forwards}
   @keyframes in{to{opacity:1;transform:none}}
-  @media (prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none} *{transition:none!important}}
+  @media (prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}*{transition:none!important}}
 </style>
 </head>
 <body>
+<i class="blob b1"></i><i class="blob b2"></i>
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="/" id="brand"></a>
-    <nav><a href="#projects">Projects</a><a href="#contact">Contact</a></nav>
+    <div>
+      <h1 id="name"></h1>
+      <p class="tagline" id="tagline"></p>
+    </div>
+    <svg class="bookmark" viewBox="0 0 28 36" aria-hidden="true"><path d="M2 0h24a2 2 0 0 1 2 2v32.5a1 1 0 0 1-1.6.8L14 26.5 1.6 35.3A1 1 0 0 1 0 34.5V2a2 2 0 0 1 2-2z" fill="#e0675a"/></svg>
   </header>
 
-  <div class="hero">
-    <div class="eyebrow">Portfolio · <span id="count"></span></div>
-    <h1 id="headline"></h1>
-    <p id="tagline"></p>
-  </div>
+  <label class="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="Search projects" autocomplete="off" aria-label="Search projects">
+  </label>
+  <nav class="years" id="years" aria-label="Filter by year"></nav>
 
-  <main id="projects"></main>
+  <main class="timeline" id="timeline"></main>
 
   <footer id="contact">
     <span id="copy"></span>
@@ -95,41 +124,53 @@
   const S = window.SITE || {}, P = window.PROJECTS || [];
   const $ = id => document.getElementById(id);
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const label = {live:"Live", building:"In progress", soon:"Coming next"};
 
-  const first = (S.name || "").split(" ")[0];
-  $("brand").innerHTML = esc(S.name) + "<i>.</i>";
-  $("headline").innerHTML = "Things I've <em>built</em> &amp; what's next.";
+  $("name").textContent = S.name || "Projects";
   $("tagline").textContent = S.tagline || "";
   document.title = (S.name || "") + " — Projects";
-  const live = P.filter(p => p.status === "live").length;
-  $("count").textContent = P.length + " project" + (P.length === 1 ? "" : "s") + " · " + live + " live";
 
-  const groups = [
-    { key: ["live"],     title: "Live",         note: "Open and running" },
-    { key: ["building"], title: "In progress",  note: "Being built right now" },
-    { key: ["soon"],     title: "Coming next",  note: "On the roadmap" },
-  ];
+  const years = [...new Set(P.map(p => p.year).filter(Boolean))].sort((a,b) => b - a);
+  let year = "all", query = "";
 
-  let n = 0, html = "";
-  groups.forEach(g => {
-    const items = P.filter(p => g.key.includes(p.status || "live"));
-    if (!items.length) return;
-    html += `<section><div class="sec-head"><h2>${g.title}</h2><span>${g.note}</span></div><div class="grid">`;
-    items.forEach(p => {
-      const linked = !!p.url && p.status !== "soon";
+  function renderYears(){
+    $("years").innerHTML = ["all", ...years].map(y =>
+      `<button type="button" data-y="${esc(y)}" class="${y === year ? "on" : ""}">${y === "all" ? "All" : esc(y)}</button>`).join("");
+  }
+  function renderTimeline(){
+    const q = query.trim().toLowerCase();
+    const items = P.map((p, i) => ({p, i})).filter(({p}) =>
+      (year === "all" || String(p.year) === String(year)) &&
+      (!q || [p.title, p.description, (p.tags||[]).join(" ")].join(" ").toLowerCase().includes(q)));
+    if (!items.length) { $("timeline").innerHTML = '<p class="empty">No projects match.</p>'; return; }
+    $("timeline").innerHTML = items.map(({p, i}, n) => {
+      const st = p.status || "live";
+      const linked = !!p.url && st !== "soon";
       const tag = linked ? "a" : "div";
-      const attrs = linked ? ` href="${esc(p.url)}"` : "";
+      const href = linked ? ` href="${esc(p.url)}"` : "";
       const tags = (p.tags || []).map(t => `<span>${esc(t)}</span>`).join("");
-      html += `<${tag} class="card reveal"${attrs} style="animation-delay:${(n++)*70}ms">
-        <div class="row"><span class="status ${esc(p.status || "live")}">${esc(p.status || "live")}</span><span>${esc(p.year || "")}</span></div>
-        <h3>${esc(p.title)}</h3>
-        <p>${esc(p.description)}</p>
-        <div class="foot"><div class="tags">${tags}</div>${linked ? '<span class="arrow" aria-hidden="true">↗</span>' : ""}</div>
-      </${tag}>`;
-    });
-    html += `</div></section>`;
+      return `<section class="node ${esc(st)}">
+        <i class="dot"></i>
+        <${tag} class="card reveal"${href} style="animation-delay:${n*90}ms">
+          <div class="shot"><span class="badge">${label[st] || esc(st)}</span><span class="big">${String(i+1).padStart(2,"0")}</span><div class="chips">${tags}</div></div>
+          <div class="body">
+            <h3>${esc(p.title)}</h3>
+            <div class="meta">${esc(p.year || "")}${p.year ? " · " : ""}${label[st] || esc(st)}</div>
+            <p>${esc(p.description)}</p>
+            <div class="go"><span>${linked ? "See Details" : "Stay tuned"}</span>${linked ? "<b aria-hidden=\"true\">→</b>" : ""}</div>
+          </div>
+        </${tag}>
+      </section>`;
+    }).join("");
+  }
+
+  $("years").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    year = b.dataset.y; renderYears(); renderTimeline();
   });
-  $("projects").innerHTML = html || "<section><p>No projects yet.</p></section>";
+  $("q").addEventListener("input", e => { query = e.target.value; renderTimeline(); });
+
+  renderYears(); renderTimeline();
 
   $("copy").textContent = "© " + new Date().getFullYear() + " " + (S.name || "");
   const links = (S.links || []).map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`);
