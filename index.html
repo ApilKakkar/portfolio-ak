@@ -38,7 +38,7 @@
   .search input::placeholder{color:var(--muted)}
   .search input:focus{outline:0;box-shadow:inset 0 0 0 2px var(--accent),0 6px 14px -6px rgba(44,47,54,.28)}
 
-  .years{display:flex;gap:26px;overflow-x:auto;padding:4px 2px 18px;scrollbar-width:none}
+  .years{margin-top:24px;display:flex;gap:26px;overflow-x:auto;padding:4px 2px 18px;scrollbar-width:none}
   .years::-webkit-scrollbar{display:none}
   .years button{position:relative;background:none;border:0;font:700 20px Roboto,sans-serif;color:var(--slate);cursor:pointer;padding:0 0 12px;letter-spacing:.01em;transition:color .2s}
   .years button:hover{color:var(--ink)}
@@ -99,15 +99,10 @@
   <header class="top">
     <div>
       <h1 id="name"></h1>
-      <p class="tagline" id="tagline"></p>
     </div>
     <svg class="bookmark" viewBox="0 0 28 36" aria-hidden="true"><path d="M2 0h24a2 2 0 0 1 2 2v32.5a1 1 0 0 1-1.6.8L14 26.5 1.6 35.3A1 1 0 0 1 0 34.5V2a2 2 0 0 1 2-2z" fill="#e0675a"/></svg>
   </header>
 
-  <label class="search">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-    <input id="q" type="search" placeholder="Search projects" autocomplete="off" aria-label="Search projects">
-  </label>
   <nav class="years" id="years" aria-label="Filter by year"></nav>
 
   <main class="timeline" id="timeline"></main>
@@ -127,7 +122,6 @@
   const label = {live:"Live", building:"In progress", soon:"Coming next"};
 
   $("name").textContent = S.name || "Projects";
-  $("tagline").textContent = S.tagline || "";
   document.title = (S.name || "") + " — Projects";
 
   const years = [...new Set(P.map(p => p.year).filter(Boolean))].sort((a,b) => b - a);
@@ -168,7 +162,6 @@
     const b = e.target.closest("button"); if (!b) return;
     year = b.dataset.y; renderYears(); renderTimeline();
   });
-  $("q").addEventListener("input", e => { query = e.target.value; renderTimeline(); });
 
   renderYears(); renderTimeline();
 

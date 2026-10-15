@@ -5,7 +5,6 @@
 // ─────────────────────────────────────────────────────────────
 window.SITE = {
   name: "Apil Kakkar",
-  tagline: "Product engineer turned MBA. I build things, measure them, and ship what works.",
   email: "apilkakkar.dem2026@iimu.ac.in",
   links: [
     // { label: "LinkedIn", url: "https://linkedin.com/in/..." },
