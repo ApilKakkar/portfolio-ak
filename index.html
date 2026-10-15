@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apil Kakkar — Projects</title>
+<meta name="description" content="Projects and products built by Apil Kakkar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f3ec; --ink:#16140f; --muted:#6b665a; --line:#dcd6c6; --card:#fbf9f4;
+    --accent:#c8452b; --live:#2f7d4f; --build:#b7791f;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#12110e; --ink:#f1ece0; --muted:#9a9382; --line:#2c2a23; --card:#18170f; --accent:#ff7a59; --live:#6cc58d; --build:#e0a64a; }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+  header.top{display:flex;justify-content:space-between;align-items:center;padding:28px 0;font-size:14px}
+  .brand{font-family:Fraunces,serif;font-weight:600;font-size:18px;letter-spacing:-.01em}
+  .brand i{color:var(--accent);font-style:normal}
+  nav a{margin-left:20px;color:var(--muted);transition:color .2s}
+  nav a:hover{color:var(--ink)}
+
+  .hero{padding:72px 0 56px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+  h1{font-family:Fraunces,serif;font-weight:500;font-size:clamp(40px,7vw,84px);line-height:1.02;letter-spacing:-.03em;max-width:15ch}
+  h1 em{color:var(--accent);font-style:italic}
+  .hero p{margin-top:24px;max-width:52ch;color:var(--muted);font-size:18px}
+
+  section{padding:56px 0 8px}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:24px}
+  .sec-head h2{font-family:Fraunces,serif;font-weight:500;font-size:28px;letter-spacing:-.02em}
+  .sec-head span{color:var(--muted);font-size:14px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+  .card{position:relative;display:flex;flex-direction:column;gap:12px;min-height:210px;padding:24px;background:var(--card);border:1px solid var(--line);border-radius:14px;
+        transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+  a.card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 14px 30px -18px rgba(0,0,0,.35)}
+  a.card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .card .row{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted)}
+  .status{display:inline-flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+  .status::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+  .status.live{color:var(--live)} .status.building{color:var(--build)} .status.soon{color:var(--muted)}
+  .card h3{font-family:Fraunces,serif;font-weight:500;font-size:24px;letter-spacing:-.015em;line-height:1.15}
+  .card p{color:var(--muted);font-size:15px;flex:1}
+  .card .foot{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .tags{display:flex;flex-wrap:wrap;gap:6px}
+  .tags span{font-size:12px;padding:3px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+  .arrow{font-size:22px;color:var(--accent);transition:transform .25s}
+  a.card:hover .arrow{transform:translate(4px,-4px)}
+  div.card{opacity:.65;border-style:dashed}
+
+  footer{margin-top:80px;padding:32px 0 48px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:var(--muted);font-size:14px}
+  footer a:hover{color:var(--ink)}
+  footer .links a{margin-left:16px}
+
+  .reveal{opacity:0;transform:translateY(12px);animation:in .6s ease forwards}
+  @keyframes in{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none} *{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/" id="brand"></a>
+    <nav><a href="#projects">Projects</a><a href="#contact">Contact</a></nav>
+  </header>
+
+  <div class="hero">
+    <div class="eyebrow">Portfolio · <span id="count"></span></div>
+    <h1 id="headline"></h1>
+    <p id="tagline"></p>
+  </div>
+
+  <main id="projects"></main>
+
+  <footer id="contact">
+    <span id="copy"></span>
+    <span class="links" id="links"></span>
+  </footer>
+</div>
+
+<script src="projects.js"></script>
+<script>
+(function(){
+  const S = window.SITE || {}, P = window.PROJECTS || [];
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+  const first = (S.name || "").split(" ")[0];
+  $("brand").innerHTML = esc(S.name) + "<i>.</i>";
+  $("headline").innerHTML = "Things I've <em>built</em> &amp; what's next.";
+  $("tagline").textContent = S.tagline || "";
+  document.title = (S.name || "") + " — Projects";
+  const live = P.filter(p => p.status === "live").length;
+  $("count").textContent = P.length + " project" + (P.length === 1 ? "" : "s") + " · " + live + " live";
+
+  const groups = [
+    { key: ["live"],     title: "Live",         note: "Open and running" },
+    { key: ["building"], title: "In progress",  note: "Being built right now" },
+    { key: ["soon"],     title: "Coming next",  note: "On the roadmap" },
+  ];
+
+  let n = 0, html = "";
+  groups.forEach(g => {
+    const items = P.filter(p => g.key.includes(p.status || "live"));
+    if (!items.length) return;
+    html += `<section><div class="sec-head"><h2>${g.title}</h2><span>${g.note}</span></div><div class="grid">`;
+    items.forEach(p => {
+      const linked = !!p.url && p.status !== "soon";
+      const tag = linked ? "a" : "div";
+      const attrs = linked ? ` href="${esc(p.url)}"` : "";
+      const tags = (p.tags || []).map(t => `<span>${esc(t)}</span>`).join("");
+      html += `<${tag} class="card reveal"${attrs} style="animation-delay:${(n++)*70}ms">
+        <div class="row"><span class="status ${esc(p.status || "live")}">${esc(p.status || "live")}</span><span>${esc(p.year || "")}</span></div>
+        <h3>${esc(p.title)}</h3>
+        <p>${esc(p.description)}</p>
+        <div class="foot"><div class="tags">${tags}</div>${linked ? '<span class="arrow" aria-hidden="true">↗</span>' : ""}</div>
+      </${tag}>`;
+    });
+    html += `</div></section>`;
+  });
+  $("projects").innerHTML = html || "<section><p>No projects yet.</p></section>";
+
+  $("copy").textContent = "© " + new Date().getFullYear() + " " + (S.name || "");
+  const links = (S.links || []).map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`);
+  if (S.email) links.push(`<a href="mailto:${esc(S.email)}">Email</a>`);
+  $("links").innerHTML = links.join("");
+})();
+</script>
+</body>
+</html>
