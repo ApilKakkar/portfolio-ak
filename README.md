@@ -1,6 +1,15 @@
 # portfolio-ak
 
-Landing page for apilkakkar.com. Edit `projects.js` to add or change projects.
+Landing page for apilkakkar.com. Plain HTML/CSS cards, with a light React Three Fiber
+background (floating spheres that react to the cursor and scroll). The 3D layer is
+lazy-loaded and skipped for reduced-motion users or browsers without WebGL.
 
+## Add / edit projects
+Edit `public/projects.js`.
+
+## Run locally
+    npm install
+    npm run dev          # http://localhost:5173
+
+## Docker
     docker compose up -d --build     # serves on :80
-    # or: docker build -t portfolio . && docker run -d -p 80:80 portfolio
